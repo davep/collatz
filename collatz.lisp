@@ -26,4 +26,13 @@
   (declare (fixnum n))
   (loop for i from 1 to n collect (cons i (length (collatz-sequence i)))))
 
+(defun longest-sequence-from-1-to (n)
+  "Find which longer has the longest Collatz between 1 and N.
+
+The return values are the number that generates the sequence and the length
+of the sequence."
+  (declare (fixnum n))
+  (let ((longest (car (sort (collatz-sizes n) #'> :key #'cdr))))
+    (values (car longest) (cdr longest))))
+
 ;;; collatz.lisp ends here
